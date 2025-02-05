@@ -1,0 +1,17 @@
+@startuml
+skinparam sequenceMessageAlign center
+title Request/Response without Ack with Gateways
+participant "Originating System" as Placer
+participant "Gateway 1" as G1
+participant "Gateway n" as Gn
+participant "Receiving System" as Filler
+
+Placer -> G1: <b>Request
+G1 -> Gn: <b>Request
+Gn -> Filler: <b>Request
+Filler -[#red]> Gn: <font color=red><b>Application Response
+Gn -[#red]> G1: <font color=red><b>Application Response 
+G1 -[#red]> Placer: <font color=red><b>Application Response 
+
+@enduml
+

@@ -1,0 +1,13 @@
+@startuml
+skinparam sequenceMessageAlign center
+title Request/Response with Ack without Gateways
+participant "Originating System" as Placer
+participant "Receiving System" as Filler
+
+Placer -> Filler: <b>Request
+Filler --> Placer: Accept Ack 
+Filler -[#red]> Placer: <b><font color=red> Application Response
+Placer -[#red]-> Filler: <font color=red>Accept Ack 
+
+@enduml
+

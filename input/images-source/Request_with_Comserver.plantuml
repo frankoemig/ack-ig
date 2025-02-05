@@ -1,0 +1,43 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+title One Broadcast Message to different Recipients
+
+participant "Originating System" as Sender
+participant "Comserver" as Comserver
+participant "Receiving System 1" as Receiver1
+participant "Receiving System 2" as Receiver2
+participant "Receiving System 3" as Receiver3
+
+Sender -> Comserver: <b>Request
+activate Comserver
+Comserver --> Comserver: create ACK
+activate Comserver
+Comserver --> Sender: Accept Ack
+deactivate Comserver
+
+Comserver --> Comserver: modify for recipient 1
+activate Comserver
+Comserver -> Receiver1: <b>modified Request
+activate Receiver1
+Receiver1 --> Comserver: Accept Ack
+deactivate Receiver1
+deactivate Comserver
+
+Comserver --> Comserver: modify for recipient 2
+activate Comserver
+Comserver -> Receiver2: <b>modified Request
+activate Receiver2
+Receiver2 --> Comserver: Accept Ack
+deactivate Receiver2
+deactivate Comserver
+
+Comserver --> Comserver: modify for recipient 3
+activate Comserver
+Comserver -> Receiver3: <b>modified Request
+activate Receiver3
+Receiver3 --> Comserver: Accept Ack
+deactivate Receiver3
+deactivate Comserver
+
+@enduml
