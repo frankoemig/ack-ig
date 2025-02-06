@@ -1,0 +1,31 @@
+@startmindmap
+
++ Obligations
+
+++ Conformance Verbs
++++_ positive
+++++_ SHALL
+++++_ SHOULD
+++++_ MAY
++++_ negative
+++++_ (MAYNOT)
+++++_ SHOULDNOT
+++++_ SHALLNOT
+
+++ Activity
++++ SEND
+++++_ ...
++++ PROCESS
+++++_ ...
++++ IGNORE
+++++_ ...
++++ INHERIT
+++++_ ...
+
+++ Data Expectation
++++ expected
+++++_ ...
++++ unexpected
+++++_ ...
+
+@endmindmap

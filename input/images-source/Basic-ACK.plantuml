@@ -1,0 +1,59 @@
+@startuml
+
+skinparam sequenceMessageAlign center
+title Basic ACK Handling
+
+actor "(External) Trigger" as Trigger
+
+box "Sending System"
+participant "Originating System" as Sender
+end box
+
+box "Receiving System"
+participant "Recipient" as Receiver
+participant "Conformance Testing" as Conformer
+participant "Processor" as Processor
+end box
+
+Trigger -> Sender : <b>trigger event
+activate Sender
+
+Sender -> Receiver: <b>Request
+deactivate Sender
+activate Receiver
+Receiver --> Receiver: verify completeness \nof incoming message
+activate Receiver
+deactivate Receiver
+Receiver --> Receiver: create Transport ACK
+activate Receiver
+Receiver --> Sender: Transport Ack
+activate Sender
+Sender --> Sender: check for resubmission
+deactivate Sender
+deactivate Receiver
+
+Receiver --> Receiver: conformance testing
+activate Receiver
+Receiver --> Conformer: test conformance
+activate Conformer
+Conformer -> Receiver: test result
+deactivate Conformer
+Receiver --> Sender: negative Appl Ack (opt.)
+activate Sender
+Sender --> Sender: check for error
+deactivate Sender
+deactivate Receiver
+
+Receiver --> Receiver: processing
+activate Receiver
+Receiver -> Processor: start processing
+activate Processor
+Processor --> Receiver: results
+deactivate Processor
+Receiver --> Sender: <b>processing Appl Ack
+activate Sender
+Sender --> Sender: check for error
+deactivate Sender
+deactivate Receiver
+
+@enduml

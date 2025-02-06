@@ -3,13 +3,13 @@
 # │  used properties are included. For a list of all supported properties and their functions,     │
 # │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: ackig
+id: Ack_ig
 canonical: http://ackig.oemig.de/fhir
-name: ackig
+name: Ack_IG
 title: ACK Management Framework
 description: Draft Implementation Guide for handling ACKs
 status: draft # draft | active | retired | unknown
-version: 0.1.0
+version: 0.1.1
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+
 releaseLabel: ci-build
@@ -46,8 +46,12 @@ publisher:
 pages:
   index.md:
     title: Home
+  interactions.md:
+    title: Interaction
   ack-codes.md:
     title: ACK Codes
+  obligations.md:
+    title: Obligations
   download.md:
     title: Download
 #   implementation.xml:
@@ -80,7 +84,9 @@ pages:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
+  Interactions: interactions.html
   ACK Codes: ack-codes.html
+  Obligations: obligations.html
   Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮

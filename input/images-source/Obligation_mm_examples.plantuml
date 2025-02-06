@@ -1,0 +1,9 @@
+@startmindmap
+
++ Obligation Examples
+
+++_ SHOULD PROCESS
+++_ SHOULD NOT MODIFY
+**_ SHALL NOT SEND missing
+
+@endmindmap
