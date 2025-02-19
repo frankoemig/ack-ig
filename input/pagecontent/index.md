@@ -1,3 +1,9 @@
+<style>
+table th {background: #f0b033}
+table tr:nth-child(even) {background: #EEE}
+table tr:nth-child(odd) {background: #FFF}
+</style>
+
 ### Overview
 
 The ACK Management Framework describes different interactions and codes that control 
@@ -10,10 +16,11 @@ Primarily, the following is expected:
 
 A recipient has to consume the message, and create a response in return, that documents the receipt 
 of the message as well as detailed information from its internal processing. The level depends on whether
-the transports could done successfully and/or the conformance testing as well as processing could happen.
+the transports could be done successfully and/or the conformance testing as well as processing could happen.
 
 In addition, some details are neccessary to specify what should be done with the data.
-This belongs to [obligations](obligations.html), which should  be discussed in a [separate specification](https://build.fhir.org/ig/frankoemig/obligation/).
+This belongs to [obligations](obligations.html), which should  be discussed 
+in a [separate specification](https://build.fhir.org/ig/frankoemig/obligation/) but not here.
 
 ### Basic Interaction
 
@@ -21,9 +28,9 @@ The primary purpose of acknowledgements is the communication to the sender
 how far the incoming message could be processed.
 In principle, it may consist of three different levels:
 
-1: physical (correct) receipt of the message
-2: conformance testing against basic, formally specified criteria
-3: processing of content
+1. physical (correct) receipt of the message
+2. conformance testing against basic and formally specified criteria (normally not done)
+3. processing of content
 
 <div width="500px">
 {% include Basic-ACK.svg %}
@@ -47,3 +54,14 @@ of the physical completeness and correctness of the content, are following:
 3. specifying details about what should happen with (parts of) the message
   a. aka [obligations](obligations.html)
 
+### Primary Response
+
+The response from a recipient to a sender my concentrate on two different facts:
+
+|Appl. <br/>ACK|1: <br/>focus on internal state of recipient |2: <br/>focus on action needed by sender |
+| --- | --- | --- |
+| <b>AA<b/> |All information was accepted|No further action needed|
+| <b>AE<b/> |Some information was accepted|Fixes are requested but nor required to be resubmitted|
+| <b>AR<b/> |No information was accepted|Fixes are required and resubmission is necessary or critical|
+
+ 

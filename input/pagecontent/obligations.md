@@ -19,4 +19,4 @@ Some examples:
 
 ### Links
 
-* https://confluence.hl7.org/display/CONF/Support-Handling
+* [https://confluence.hl7.org/display/CONF/Support-Handling](https://confluence.hl7.org/display/CONF/Support-Handling)
