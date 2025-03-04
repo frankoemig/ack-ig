@@ -1,16 +1,31 @@
 @startuml
+
 skinparam sequenceMessageAlign center
-title Request with Ack and Gateways
+title Request with Transport ACK and Gateways
+actor "Trigger" as Trigger
 participant "Originating System" as Placer
 participant "Gateway 1" as G1
 participant "Gateway n" as Gn
 participant "Receiving System" as Filler
 
+Trigger -> Placer
+activate Placer
 Placer -> G1: <b>Request
+activate G1
 G1 --> Placer: Accept Ack 1
+Placer --> Placer: check for resubmission
+deactivate Placer
 G1 -> Gn: <b>Request
+activate Gn
 Gn --> G1: Accept Ack 2
+G1 --> G1: check for resubmission
+deactivate G1
 Gn -> Filler: <b>Request
+activate Filler
 Filler --> Gn: Accept Ack 3
+deactivate Filler
+Gn --> Gn: check for resubmission
+deactivate Gn
+
 @enduml
 

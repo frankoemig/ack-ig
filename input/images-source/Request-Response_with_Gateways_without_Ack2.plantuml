@@ -1,7 +1,7 @@
 @startuml
 
 skinparam sequenceMessageAlign center
-title Request+Response without Transport ACK with Gateways
+title Request+Response without Transport ACK with Gateways (2)
 actor "Trigger" as Trigger
 participant "Originating System" as Placer
 participant "Gateway 1" as G1
@@ -11,22 +11,19 @@ participant "Receiving System" as Filler
 Trigger -> Placer
 activate Placer
 Placer -> G1: <b>Request
-deactivate Placer
 activate G1
 G1 -> Gn: <b>Request
-deactivate G1
 activate Gn
 Gn -> Filler: <b>Request
-deactivate Gn
 activate Filler
 Filler -[#red]> Gn: <font color=red><b>Application Response
 deactivate Filler
-activate Gn
 Gn -[#red]> G1: <font color=red><b>Application Response 
 deactivate Gn
-activate G1
 G1 -[#red]> Placer: <font color=red><b>Application Response 
 deactivate G1
+Placer --> Trigger: signal response \nsomehow if needed
+deactivate Placer
 
 @enduml
 

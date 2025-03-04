@@ -11,28 +11,45 @@ Trigger -> Placer
 activate Placer
 Placer -> G1: <b>Request
 activate G1
+activate Placer
 G1 --> Placer: Accept Ack 1
+Placer -> Placer: check for resubmission
 deactivate Placer
 G1 -> Gn: <b>Request
+activate G1
 activate Gn
 Gn --> G1: Accept Ack 2
+G1 -> G1: check for resubmission
 deactivate G1
 Gn -> Filler: <b>Request
 activate Filler
+activate Gn
 Filler --> Gn: Accept Ack 3
+Gn -> Gn: check for resubmission
 deactivate Gn
 Filler -[#red]> Gn: <b><font color=red>Application Response
+activate Filler
 activate Gn
 Gn -[#red]-> Filler: <font color=red>Accept Ack 4 
+Filler -> Filler: check for resubmission
 deactivate Filler
 Gn -[#red]> G1: <b><font color=red>Application Response 
+deactivate Filler
 activate G1
 G1 -[#red]-> Gn: <font color=red>Accept Ack 5 
+deactivate G1
+Gn -> Gn: check for resubmission
 deactivate Gn
 G1 -[#red]> Placer: <b><font color=red>Application Response 
+deactivate Gn
+activate G1
 activate Placer
 Placer -[#red]-> G1: <font color=red>Accept Ack 6 
+deactivate Placer
+G1 -> G1: check for resubmission
 deactivate G1
+deactivate G1
+Placer --> Trigger: signal response \nsomehow if needed
 deactivate Placer
 
 @enduml

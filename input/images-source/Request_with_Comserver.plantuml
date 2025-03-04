@@ -10,11 +10,13 @@ participant "Receiving System 2" as Receiver2
 participant "Receiving System 3" as Receiver3
 
 Sender -> Comserver: <b>Request
+activate Sender
 activate Comserver
 Comserver --> Comserver: create ACK
 activate Comserver
 Comserver --> Sender: Accept Ack
 deactivate Comserver
+deactivate Sender
 
 Comserver --> Comserver: modify for recipient 1
 activate Comserver

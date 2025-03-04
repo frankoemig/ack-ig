@@ -5,9 +5,13 @@ participant "Originating System" as Placer
 participant "Receiving System" as Filler
 
 Placer -> Filler: <b>Request
+activate Placer
+activate Filler
 Filler --> Placer: Accept Ack 
 Filler -[#red]> Placer: <b><font color=red> Application Response
 Placer -[#red]-> Filler: <font color=red>Accept Ack 
+deactivate Placer
+deactivate Filler
 
 @enduml
 

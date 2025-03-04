@@ -4,7 +4,7 @@ RuleSet: HeaderDetailRules
 
 * ^status = #active // to avoid warnings ... #draft 
 * ^experimental = false
-* ^date = "2024-04-16"
+* ^date = "2025-02-20"
 * ^copyright = "FO"
 
 //wird durch config überschrieben
