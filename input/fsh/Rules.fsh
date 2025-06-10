@@ -8,4 +8,4 @@ RuleSet: HeaderDetailRules
 * ^copyright = "FO"
 
 //wird durch config überschrieben
-//* ^publisher = "IHE Deutschland e.V."
+//* ^publisher = "HL7 International"
