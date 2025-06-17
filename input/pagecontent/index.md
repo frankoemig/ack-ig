@@ -58,10 +58,10 @@ of the physical completeness and correctness of the content, are following:
 
 The response from a recipient to a sender my concentrate on two different facts:
 
-|Appl. <br/>ACK|1: <br/>focus on internal state of recipient |2: <br/>focus on action needed by sender |
-| --- | --- | --- |
-| <b>AA<b/> |All information was accepted|No further action needed|
-| <b>AE<b/> |Some information was accepted|Fixes are requested but nor required to be resubmitted|
-| <b>AR<b/> |No information was accepted|Fixes are required and resubmission is necessary or critical|
+|Application <br/>ACK:|<br/>Meaning|1: <br/>focus is on internal state of recipient |record stored|2: <br/>focus is on action needed by sender|  record stored|
+| --- | --- | --- | --- |
+| <b>AA<b/> |Accept|All information was accepted.<br/>No further action needed.|yes|Information was accepted and record has been created.<br/>No further action needed.|yes|
+| <b>AE<b/> |Error |Some information was accepted and processed.<br/>It is recommended to send an updated message for the outstanding details.|yes|Message hasn't been processed, only minor errors are detected, but resubmission is necessary.|no|
+| <b>AR<b/> |Reject|No information was accepted for any reason.<br/>If necessary, an updated message must be sent.|no|Important details are wrong and fixes are required and resubmission is necessary or critical.|no|
 
- 
+Both options have their pros and cons and are equally valid.

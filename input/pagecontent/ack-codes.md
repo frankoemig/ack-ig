@@ -6,7 +6,7 @@ table tr:nth-child(odd) {background: #FFF}
 
 How to deal with ACK codes?
 
-### Defined Codes
+### In v2.x defined Codes
 
 What codes are currently defined?
 
@@ -15,6 +15,14 @@ What codes are currently defined?
 | AA | message is accepted and processed, perhaps some minor issues, but no major errors | none |
 | AE | message contains minor errors and is at least partially processed | resubmit erroneous data in a new or updated message |
 | AR | message contains major errors and is not processed | The errors must be fixed and the complete message has be to resent. |
+
+### Distinction of Soft and Hard Errors
+
+An important aspect is the distinction into soft and hard errors.
+In other words, what is an error that can be corrected and may or may not require a resubmission?
+And which error is so severe that the message cannot be processed?
+The two identified options provide a different view onto that topic.
+
 
 ### Scenarios ...
 
@@ -46,6 +54,22 @@ The sender can take the most important details from the acknowledgement code.
 | AR | The message contains major errors and is not processed | The errors must be fixed and the complete message has be to resent. |
 
 
+###### Detailed Error Indication
+
+How are soft and hard errors classified for option 1?
+
+| Type | AA | AE | AR | Comment |
+| --- | --- | --- | --- | --- |
+| infos | x | x | x | infos may appear in every response |
+| warning | x | x | x | same for warnings |
+| soft error | a) | x | x | soft errors may not prevent from (partial) successful processing of the message |
+| hard error | - | b) | x | a hard error must be present on a rejection, but it can be accepted in a partial processing. However, that must be corrected. |
+
+a) Small/minor errors can be issued even if the message returns an "AA". But hard errors are not allowed.
+
+b) It is debatable whether hard errors will lead to a partial processing of a message ("AE"), or a total rejection ("AR"). 
+Both has some arguments.
+
 ##### Option 2
 
 Alternatively, even with minor issues on substantive content the message can be rejected ("AR"). 
@@ -53,9 +77,22 @@ Then the list of warnings and errors must be checked to identify what needs corr
 
 | Code | Description | Follow-up | Precondition |
 | --- | --- | --- | --- |
-| AA | message accepted |
-| AE | Only minor issues that do not affect important data. |
-| AR | Issues on important data lead to reject the message. | All errors must be corrected and the message has to be resent. |
+| AA | message accepted, record created | .. on minor issues if needed | 
+| AE | Only minor issues that do not affect important data, but record is NOT created. |
+| AR | Issues on important data lead to reject the message, again no record created. | All errors must be corrected and the message has to be resent. |
+
+###### Detailed Error Indication
+
+How are soft and hard errors classified for option 1?
+
+| Type | AA | AE | AR | Comment |
+| --- | --- | --- | --- | --- |
+| infos | x | x | x | infos may appear in every response |
+| warning | x | x | x | same for warnings |
+| soft error | - | x | x | soft errors that prevent from (partial) successful processing of the message |
+| hard error | - | - | x | a hard error must be present on a rejection. However, such a message must be corrected. |
+
+
 
 #### ... with simple messages
 
@@ -71,24 +108,3 @@ Taking the above example, different messages for each aspect would be created an
 | AR | The message contains major errors and is not processed. | The errors must be fixed and the complete message has be to resent. |
 
 
-### Soft and Hard Errors
-
-An important aspect is the distinction into soft and hard errors.
-In other words, what is an error that must be corrected, but does not lead to reject a message?
-And which error is so severe that the message cannot be processed?
-
-### Detailed Error Indication
-
-Another question is which type of error can be contained in what response:
-
-| Type | AA | AE | AR | Comment |
-| --- | --- | --- | --- | --- |
-| infos | x | x | x | infos may appear in every response |
-| warning | x | x | x | same for warnings |
-| soft error | a) | x | x | soft errors may not prevent from (partial) successful processing of the message |
-| hard error | - | b) | x | a hard error must be present on a rejection, but it can be accepted in a partial processing. However, that must be corrected. |
-
-a) Small/minor errors can be issued even if the message returns an "AA". But hard errors are not allowed.
-
-b) It is debatable whether hard errors will lead to a partial processing of a message ("AE"), or a total rejection ("AR"). 
-Both has some arguments.

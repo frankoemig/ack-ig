@@ -30,6 +30,16 @@ Description: "**ACK Codes** (for temporary use only; to be replaced later on)"
 * ^property[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/codesystem-property-valueset"
 * ^property[=].extension[=].valueCanonical = "http://ackig.oemig.de/fhir/ValueSet/ResponseType"
 
+* ^property[+].code = #option1
+* ^property[=].uri = "http://ackig.oemig.de/fhir/CodeSystem/Property#option1"
+* ^property[=].description = "How to behave with option 1?"
+* ^property[=].type = #string
+
+* ^property[+].code = #option2
+* ^property[=].uri = "http://ackig.oemig.de/fhir/CodeSystem/Property#option2"
+* ^property[=].description = "How to behave with option 2?"
+* ^property[=].type = #string
+
 * ^property[+].code = #status
 * ^property[=].uri = "http://hl7.org/fhir/concept-properties#status"
 * ^property[=].description = "Status"
@@ -44,16 +54,28 @@ Description: "**ACK Codes** (for temporary use only; to be replaced later on)"
     * ^property[=].valueCode = #application
     * ^property[+].code = #response
     * ^property[=].valueCode = #positive
+    * ^property[+].code = #option1
+    * ^property[=].valueString = "All information was accepted - no further activity needed"
+    * ^property[+].code = #option2
+    * ^property[=].valueString = "All information was accepted - no further activity needed"
   * #AE "application error"
     * ^property[+].code = #type
     * ^property[=].valueCode = #application
     * ^property[+].code = #response
     * ^property[=].valueCode = #neutral
+    * ^property[+].code = #option1
+    * ^property[=].valueString = "Some information was accepted - update recommended"
+    * ^property[+].code = #option2
+    * ^property[=].valueString = "Fixes are requested but nor required to be resubmitted"
   * #AR "application reject"
     * ^property[+].code = #type
     * ^property[=].valueCode = #application
     * ^property[+].code = #response
     * ^property[=].valueCode = #negative
+    * ^property[+].code = #option1
+    * ^property[=].valueString = "No information was accepted - update necessary"
+    * ^property[+].code = #option2
+    * ^property[=].valueString = "Fixes are required and resubmission is necessary or critical"
   
 * #transport "transport ACK"
   * ^property[+].code = #status
@@ -86,7 +108,7 @@ Description: "**ACK Codes**"
 
 * insert HeaderDetailRules
 
-* include codes from system http://ackig.oemig.de/fhir/CodeSystem/AckCodes
+* include codes from system AckCodes
 
 
 //========================================================================================
@@ -110,6 +132,8 @@ Description: "possible Property Values"
 
 * #type "type"
 * #response "response"
+* #option1 "Option 1"
+* #option2 "Option 2"
 
 
 
@@ -123,7 +147,7 @@ Description: "**Property**"
 
 * insert HeaderDetailRules
 
-* include codes from system http://ackig.oemig.de/fhir/CodeSystem/Property
+* include codes from system Property
 
 
 //========================================================================================
@@ -160,7 +184,7 @@ Description: "**Ack Type**"
 
 * insert HeaderDetailRules
 
-* include codes from system http://ackig.oemig.de/fhir/CodeSystem/AckType
+* include codes from system AckType
 
 
 //========================================================================================
@@ -198,4 +222,4 @@ Description: "**Response Type**"
 
 * insert HeaderDetailRules
 
-* include codes from system http://ackig.oemig.de/fhir/CodeSystem/ResponseType
+* include codes from system ResponseType
