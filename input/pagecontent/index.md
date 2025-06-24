@@ -22,6 +22,26 @@ In addition, some details are neccessary to specify what should be done with the
 This belongs to [obligations](obligations.html), which should  be discussed 
 in a [separate specification](https://build.fhir.org/ig/frankoemig/obligation/) but not here.
 
+### Possible Options
+
+The use of the message response code in MSA allows for epressing  the results in different ways 
+in combinations with the error code in ERR:
+
+![Possible Options](options.png){:height="400px"}
+<br clear="all"/>  
+
+#### Indication in Message Header
+
+The result of the investigations for this IG provides two options that are explained later.
+
+It is a good idea to express the two use behavior by an appropriate profile identifier in MSH-21.
+
+### Critical Data
+
+Another result of the discussion is the definition of **critical data** because the successful processing
+of that data is important for defining the corresponding errors codes as well as the behavior when
+determining the ACK code.
+
 ### Basic Interaction
 
 The primary purpose of acknowledgements is the communication to the sender 
@@ -58,10 +78,17 @@ of the physical completeness and correctness of the content, are following:
 
 The response from a recipient to a sender my concentrate on two different facts:
 
-|Application <br/>ACK:|<br/>Meaning|1: <br/>focus is on internal state of recipient |record stored|2: <br/>focus is on action needed by sender|  record stored|
+|Application <br/>ACK:|<br/>Meaning|Option 1: <br/>focus is on internal state of recipient |record stored|Option 2: <br/>focus is on action needed by sender|  record stored|
 | --- | --- | --- | --- |
 | <b>AA<b/> |Accept|All information was accepted.<br/>No further action needed.|yes|Information was accepted and record has been created.<br/>No further action needed.|yes|
 | <b>AE<b/> |Error |Some information was accepted and processed.<br/>It is recommended to send an updated message for the outstanding details.|yes|Message hasn't been processed, only minor errors are detected, but resubmission is necessary.|no|
 | <b>AR<b/> |Reject|No information was accepted for any reason.<br/>If necessary, an updated message must be sent.|no|Important details are wrong and fixes are required and resubmission is necessary or critical.|no|
 
 Both options have their pros and cons and are equally valid.
+
+### Contributors
+
+* Nathan Bunker
+* Frank Oemig
+* Rob Snelick
+

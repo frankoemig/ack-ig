@@ -47,7 +47,7 @@ This option tries to process as much as possible and keeps that information stor
 The sender can take the most important details from the acknowledgement code.
 
 
-| Code | Description | Follow-up | Precondition |
+| Code | Description | Follow-up Activities | Precondition |
 | --- | --- | --- | --- |
 | AA | The message is accepted and processed, the record with all details has been created. No major errors are discovered.| none |
 | AE | The message contains errors, also on "important data" with regard to subsequent aspects. It is partially processed so that the main record has been created. | The erroneous data has to be resubmitted in more specialised messages, eg. an update to diagnosis etc. | Dedicated errors must be defined so that it is clear which part is not accepted. It is clear that some data has been stored. |
@@ -58,12 +58,12 @@ The sender can take the most important details from the acknowledgement code.
 
 How are soft and hard errors classified for option 1?
 
-| Type | AA | AE | AR | Comment |
-| --- | --- | --- | --- | --- |
-| infos | x | x | x | infos may appear in every response |
-| warning | x | x | x | same for warnings |
-| soft error | a) | x | x | soft errors may not prevent from (partial) successful processing of the message |
-| hard error | - | b) | x | a hard error must be present on a rejection, but it can be accepted in a partial processing. However, that must be corrected. |
+| Type | Code |AA | AE | AR | Comment |
+| --- | --- | --- | --- | --- | --- |
+| infos | I |x | x | x | infos may appear in every response |
+| warning | W |x | x | x | same for warnings |
+| soft error | E| a) | x | x | soft errors may not prevent from (partial) successful processing of the message |
+| hard error | E | - | b) | x | a hard error must be present on a rejection, but it can be accepted in a partial processing. However, that must be corrected. |
 
 a) Small/minor errors can be issued even if the message returns an "AA". But hard errors are not allowed.
 
@@ -77,7 +77,7 @@ Then the list of warnings and errors must be checked to identify what needs corr
 
 | Code | Description | Follow-up | Precondition |
 | --- | --- | --- | --- |
-| AA | message accepted, record created | .. on minor issues if needed | 
+| AA | message accepted, critical data accepted | .. on minor issues if needed | 
 | AE | Only minor issues that do not affect important data, but record is NOT created. |
 | AR | Issues on important data lead to reject the message, again no record created. | All errors must be corrected and the message has to be resent. |
 
@@ -85,12 +85,12 @@ Then the list of warnings and errors must be checked to identify what needs corr
 
 How are soft and hard errors classified for option 1?
 
-| Type | AA | AE | AR | Comment |
-| --- | --- | --- | --- | --- |
-| infos | x | x | x | infos may appear in every response |
-| warning | x | x | x | same for warnings |
-| soft error | - | x | x | soft errors that prevent from (partial) successful processing of the message |
-| hard error | - | - | x | a hard error must be present on a rejection. However, such a message must be corrected. |
+| Type | Code | AA | AE | AR | Comment |
+| --- | --- | --- | --- | --- | --- |
+| infos | I | x | x | x | infos may appear in every response |
+| warning | W | x | x | x | same for warnings |
+| soft error | E | - | x | x | soft errors that prevent from (partial) successful processing of the message |
+| hard error | E | - | - | x | a hard error must be present on a rejection. However, such a message must be corrected. |
 
 
 
@@ -101,7 +101,7 @@ Therefore, such a message is much smaller, and easier to process.
 Consequently, responses can be more fine tuned.
 Taking the above example, different messages for each aspect would be created and sent.
 
-| Code | Description | Follow-up |
+| Code | Description | Follow-up Activities |
 | --- | --- | --- |
 | AA | The message is accepted and processed, no major errors | none |
 | AE | The message contains minor errors and is partially processed. This will probably not happen because the message is finegrained and every aspect is declared important. | resubmit erroneous data in a new message |
