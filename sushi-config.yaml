@@ -9,7 +9,7 @@ name: AckIG
 title: ACK Management Framework
 description: Draft Implementation Guide for handling ACKs
 status: draft # draft | active | retired | unknown
-version: 0.1.8
+version: 0.1.9
 date: 2025-07-08
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2025+

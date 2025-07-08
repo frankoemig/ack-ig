@@ -27,17 +27,21 @@ in a [separate specification](https://build.fhir.org/ig/frankoemig/obligation/) 
 
 ### Possible Options
 
-The use of the message response code in MSA allows for epressing  the results in different ways 
-in combinations with the error code in ERR:
+The use of the primary message response code - in v2 this is in the MSA segment - allows for epressing 
+the results in different ways in combinations with the error code in ERR:
 
 ![Possible Options](options.png){:height="400px"}
 <br clear="all"/>  
+
+The primary difference is whether a positive response ("AA" in v2) may contain (soft) errors or not.
+Hard errors shall always result in a negative response.
 
 #### Indication in Message Header
 
 The result of the investigations for this IG provides two options that are explained later.
 
-It is a good idea to express the two use behavior by an appropriate profile identifier in MSH-21.
+It is a good idea to express in the message header which of the two possible response behaviors
+by an appropriate profile identifier in the message header. (In v2 this is in MSH-21.)
 
 ### Critical Data
 
