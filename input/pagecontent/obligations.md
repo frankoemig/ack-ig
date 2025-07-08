@@ -15,7 +15,11 @@ Some examples:
 {% include Obligation_mm_examples.svg %}
 </div>
 
+The idea behind obligations is to express three different aspects per statement:
 
+1. the conformance verb expresses the level of requirement.
+2. the activity specifies what exactly should be done. This can be separated for the internal processing, forwarding to another recipient, and as a response to the original sender.
+3. expectations for the data itself
 
 ### Links
 

@@ -107,4 +107,3 @@ Taking the above example, different messages for each aspect would be created an
 | AE | The message contains minor errors and is partially processed. This will probably not happen because the message is finegrained and every aspect is declared important. | resubmit erroneous data in a new message |
 | AR | The message contains major errors and is not processed. | The errors must be fixed and the complete message has be to resent. |
 
-
